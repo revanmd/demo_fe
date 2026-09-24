@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Karyawan</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<div class="app">
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo">N</div>
+      <span class="brand-name">NexaCorp</span>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-item active" data-view="overview">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="3" width="8" height="5" rx="2" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="10" width="8" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="13" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span>Ringkasan</span>
+      </button>
+      <button class="nav-item" data-view="employees">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 20C3.5 16.5 6 14 9 14C12 14 14.5 16.5 14.5 20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="17" cy="7.5" r="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M14.8 13.5C17.4 13.7 19.7 15.8 20.5 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span>Karyawan</span>
+      </button>
+      <button class="nav-item" data-view="leave">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 9.5H21" stroke="currentColor" stroke-width="1.6"/><path d="M7.5 3V6.5M16.5 3V6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M7.5 14L9.2 15.7L13 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Absensi & Cuti</span>
+        <span class="nav-badge" id="pendingBadge">0</span>
+      </button>
+      <button class="nav-item" data-view="orgchart">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="4.5" r="2.3" stroke="currentColor" stroke-width="1.6"/><path d="M12 6.8V11" stroke="currentColor" stroke-width="1.6"/><path d="M5 11H19" stroke="currentColor" stroke-width="1.6"/><path d="M5 11V13.5M19 11V13.5" stroke="currentColor" stroke-width="1.6"/><circle cx="5" cy="16" r="2.3" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="16" r="2.3" stroke="currentColor" stroke-width="1.6"/><circle cx="19" cy="16" r="2.3" stroke="currentColor" stroke-width="1.6"/><path d="M12 13.5V13.7" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span>Struktur Organisasi</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-mini">
+        <div class="avatar-mini">RA</div>
+        <div class="user-mini-info">
+          <strong>Revan Admin</strong>
+          <small>HR Manager</small>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Buka menu">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 6H20M4 12H20M4 18H14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <h2 class="page-title" id="pageTitle">Ringkasan</h2>
+
+      <div class="topbar-actions">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <input type="text" id="globalSearch" placeholder="Cari karyawan...">
+        </div>
+        <button class="icon-btn" aria-label="Notifikasi">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M6 9.5C6 6 8.7 4 12 4C15.3 4 18 6 18 9.5C18 13 19.5 14 19.5 15.5H4.5C4.5 14 6 13 6 9.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 18.5C9.5 19.6 10.6 20.5 12 20.5C13.4 20.5 14.5 19.6 14.5 18.5" stroke="currentColor" stroke-width="1.6"/></svg>
+          <span class="dot"></span>
+        </button>
+        <div class="avatar-mini topbar-avatar">RA</div>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- OVERVIEW -->
+      <section class="view active" id="view-overview">
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:linear-gradient(135deg,#7c5cff,#a78bff)">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3.2" stroke="white" stroke-width="1.6"/><path d="M3.5 20C3.5 16.5 6 14 9 14C12 14 14.5 16.5 14.5 20" stroke="white" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" data-count="0">0</span>
+              <span class="stat-label">Total Karyawan</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:linear-gradient(135deg,#4cff9e,#3ee2a0)">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 12L9 17L20 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" data-count="0">0</span>
+              <span class="stat-label">Karyawan Aktif</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:linear-gradient(135deg,#ff6ec7,#ff8bd3)">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 5V19M5 12H19" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" data-count="0">0</span>
+              <span class="stat-label">Karyawan Baru (30 hari)</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:linear-gradient(135deg,#ffb84c,#ffcf80)">
+              <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2.5" stroke="white" stroke-width="1.6"/><path d="M3 9.5H21" stroke="white" stroke-width="1.6"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" data-count="0">0</span>
+              <span class="stat-label">Cuti Menunggu Approval</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-grid">
+          <div class="panel">
+            <div class="panel-header">
+              <h3>Distribusi per Departemen</h3>
+            </div>
+            <div class="bar-chart" id="deptChart"></div>
+          </div>
+
+          <div class="panel panel-donut">
+            <div class="panel-header">
+              <h3>Status Karyawan</h3>
+            </div>
+            <div class="donut-wrap">
+              <div class="donut" id="statusDonut"></div>
+              <div class="donut-legend" id="statusLegend"></div>
+            </div>
+          </div>
+
+          <div class="panel panel-wide">
+            <div class="panel-header">
+              <h3>Ulang Tahun & Anniversary Bulan Ini</h3>
+            </div>
+            <div class="activity-list" id="birthdayList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EMPLOYEES -->
+      <section class="view" id="view-employees">
+        <div class="toolbar">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <input type="text" id="empSearch" placeholder="Cari nama atau jabatan...">
+          </div>
+          <select id="deptFilter" class="select-input">
+            <option value="">Semua Departemen</option>
+          </select>
+          <select id="statusFilter" class="select-input">
+            <option value="">Semua Status</option>
+            <option value="active">Aktif</option>
+            <option value="inactive">Nonaktif</option>
+          </select>
+          <button class="btn-primary" id="addEmpBtn">+ Tambah Karyawan</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th data-sort="name">Nama</th>
+                <th data-sort="department">Departemen</th>
+                <th data-sort="position">Jabatan</th>
+                <th data-sort="joinDate">Tgl Bergabung</th>
+                <th data-sort="status">Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="empTableBody"></tbody>
+          </table>
+        </div>
+
+        <div class="pagination" id="pagination"></div>
+      </section>
+
+      <!-- LEAVE -->
+      <section class="view" id="view-leave">
+        <div class="stat-grid stat-grid-3">
+          <div class="stat-card">
+            <div class="stat-icon" style="background:linear-gradient(135deg,#ffb84c,#ffcf80)">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 8V12L15 15" stroke="white" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.6"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="leavePendingCount">0</span>
+              <span class="stat-label">Menunggu Approval</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:linear-gradient(135deg,#4cff9e,#3ee2a0)">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 12L9 17L20 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="leaveApprovedCount">0</span>
+              <span class="stat-label">Disetujui</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:linear-gradient(135deg,#ef4565,#ff7a90)">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-value" id="leaveRejectedCount">0</span>
+              <span class="stat-label">Ditolak</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Pengajuan Cuti & Izin</h3>
+          </div>
+          <div class="leave-list" id="leaveList"></div>
+        </div>
+      </section>
+
+      <!-- ORG CHART -->
+      <section class="view" id="view-orgchart">
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Struktur Organisasi per Departemen</h3>
+          </div>
+          <div class="orgchart" id="orgChart"></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- Employee Detail Modal -->
+<div class="modal-overlay" id="empModalOverlay">
+  <div class="modal" id="empModal">
+    <button class="modal-close" id="empModalClose">&times;</button>
+    <div id="empModalContent"></div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>
